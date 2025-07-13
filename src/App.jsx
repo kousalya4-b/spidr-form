@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/form" element={<FormPage />} />
+        <Route path="/spidr-form" element={<Landing />} />
+        <Route path="/spidr-form/form" element={<FormPage />} />
       </Routes>
     </Router>
   );

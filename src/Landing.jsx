@@ -11,9 +11,9 @@ const Landing = () => {
       <SpiderWeb />
       <div className="center-content">
         <div className="thread-line" />
-        <img src="/spidr-logo.png" alt="Spider" className="spidr-logo" />
-        <img src="/spidr-title.png" alt="Spidr Title" className="spidr-title" />
-        <button className="enter-btn" onClick={() => navigate("/form")}>
+        <img src="./spidr-logo.png" alt="Spider" className="spidr-logo" />
+        <img src="./spidr-title.png" alt="Spidr Title" className="spidr-title" />
+        <button className="enter-btn" onClick={() => navigate("/spidr-form/form")}>
           Enter
         </button>
       </div>

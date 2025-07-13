@@ -82,7 +82,7 @@ function FormPage() {
 
       {!showSubmitted && (
         <div className="form-wrapper">
-          <img src="/spidr-title.png" alt="Spidr Title" className="spidr-title" />
+          <img src="./spidr-title.png" alt="Spidr Title" className="spidr-title" />
 <form onSubmit={handleSubmit} noValidate autoComplete="off">
   <input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
   <input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
