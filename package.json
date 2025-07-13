@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kousalya4-b.github.io/spidr-form-",
+  "homepage": "https://kousalya4-b.github.io/spidr-form",
 
   "scripts": {
     "dev": "vite",
