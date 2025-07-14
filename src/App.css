@@ -24,13 +24,13 @@ html, body, #root {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url('/download(1).png'); 
+ padding-top: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: center;
+ 
   overflow: hidden;
 }
 
@@ -74,7 +74,7 @@ canvas {
 }
 
 .spidr-logo {
-  width: 120px;
+  width: 100px;
   height: auto;
   margin-bottom: 1rem;
   animation: dropSpider 1.5s ease-out forwards;
@@ -82,7 +82,7 @@ canvas {
 
 
 .spidr-title {
-  width: 260px;
+  width: 100px;
   height: auto;
   margin-bottom: 1.5rem;
 }
@@ -249,5 +249,61 @@ button {
 
 button:hover {
   background: #7b3bd2;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  text-align: center;
+  animation: floatDown 2s infinite;
+  color: #ccc;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.9rem;
+  z-index: 2; 
+  pointer-events: auto;
+}
+canvas {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none; }
+
+
+.scroll-arrow {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+@keyframes floatDown {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+.spider-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.spider-line {
+  width: 1px;
+  height: 100px; 
+  background-color: white;
+  margin: 0; 
+  padding: 0;
+}
+
+.spidr-logo {
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 

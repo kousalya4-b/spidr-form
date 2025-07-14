@@ -16,6 +16,18 @@ function FormPage() {
   const [showSubmitted, setShowSubmitted] = useState(false);
   const resultRef = useRef(null);
 
+ 
+  useEffect(() => {
+    const handleScrollUp = (e) => {
+      if (e.deltaY < 0 && window.scrollY < 20) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("wheel", handleScrollUp);
+    return () => window.removeEventListener("wheel", handleScrollUp);
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     let formattedValue = value;
@@ -31,22 +43,13 @@ function FormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     const isValidPin = /^\d{4}-\d{4}-\d{4}-\d{4}$/.test(formData.spidrPin);
-  if (!isValidPin) {
-    alert("Invalid PIN format. Please enter 16 digits in ####-####-####-#### format.");
-    return;
-  }
+    const isValidPin = /^\d{4}-\d{4}-\d{4}-\d{4}$/.test(formData.spidrPin);
+    if (!isValidPin) {
+      alert("Invalid PIN format. Please enter 16 digits in ####-####-####-#### format.");
+      return;
+    }
 
-  
-  console.log("Submitted Form Data:", {
-    FirstName: formData.firstName,
-    LastName: formData.lastName,
-    Phone: formData.phone,
-    Email: formData.email,
-    AirFryerCost: formData.costGuess,
-    SpidrPIN: formData.spidrPin,
-  });
-
+    console.log("Submitted Form Data:", formData);
     setSubmittedData(formData);
     setShowSubmitted(true);
   };
@@ -59,10 +62,7 @@ function FormPage() {
     }
   }, [showSubmitted]);
 
-  const handleBackToForm = () => {
-    setShowSubmitted(false);
-  };
-
+  const handleBackToForm = () => setShowSubmitted(false);
   const handleResetForm = () => {
     setFormData({
       firstName: '',
@@ -83,26 +83,15 @@ function FormPage() {
       {!showSubmitted && (
         <div className="form-wrapper">
           <img src="./spidr-title.png" alt="Spidr Title" className="spidr-title" />
-<form onSubmit={handleSubmit} noValidate autoComplete="off">
-  <input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
-  <input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
-  <input name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
-  <input name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
-  <input name="costGuess" placeholder="Air Fryer Cost" type="number" value={formData.costGuess} onChange={handleChange} required />
-
-  <input
-    name="spidrPin"
-    placeholder="####-####-####-####"
-    value={formData.spidrPin}
-    onChange={handleChange}
-    required
-    pattern="\d{4}-\d{4}-\d{4}-\d{4}"
-    title="Enter a valid 16-digit PIN in the format ####-####-####-####"
-  />
-
-  <button type="submit">Submit</button>
-</form>
-
+          <form onSubmit={handleSubmit} noValidate autoComplete="off">
+            <input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
+            <input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
+            <input name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
+            <input name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
+            <input name="costGuess" placeholder="Air Fryer Cost" type="number" value={formData.costGuess} onChange={handleChange} required />
+            <input name="spidrPin" placeholder="####-####-####-####" value={formData.spidrPin} onChange={handleChange} required pattern="\d{4}-\d{4}-\d{4}-\d{4}" title="Enter a valid 16-digit PIN in the format ####-####-####-####" />
+            <button type="submit">Submit</button>
+          </form>
         </div>
       )}
 
@@ -113,8 +102,8 @@ function FormPage() {
           <p><strong>Last Name:</strong> {submittedData.lastName}</p>
           <p><strong>Phone:</strong> {submittedData.phone}</p>
           <p><strong>Email:</strong> {submittedData.email}</p>
-          <p><strong>AirFryerCost:</strong> {submittedData.costGuess}</p>
-          <p><strong>Spidr Pin:</strong> {submittedData.spidrPin}</p>
+          <p><strong>Air Fryer Cost:</strong> {submittedData.costGuess}</p>
+          <p><strong>Spidr PIN:</strong> {submittedData.spidrPin}</p>
 
           <div style={{ marginTop: "1rem", display: "flex", gap: "1rem" }}>
             <button onClick={handleBackToForm}>Back to Form</button>
